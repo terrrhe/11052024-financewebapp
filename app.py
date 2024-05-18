@@ -42,8 +42,7 @@ def generate_image():
 
 @app.route("/generate_result_image",  methods=["GET","POST"])
 def generate_result_image():
-    apiKey =  "r8_cMMTBEmGy233e5okqviDaJ0nJrbpIGT04ncEg"
-    os.environ["REPLICATE_API_TOKEN"] = apiKey
+    
     output = replicate.run(
     "zsxkib/pulid:43d309c37ab4e62361e5e29b8e9e867fb2dcbcec77ae91206a8d95ac5dd451a0",
     input={
