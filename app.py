@@ -44,25 +44,9 @@ def generate_image():
 
 @app.route("/generate_result_image",  methods=["GET","POST"])
 def generate_result_image():
-    
-    output = replicate.run(
-    "zsxkib/pulid:43d309c37ab4e62361e5e29b8e9e867fb2dcbcec77ae91206a8d95ac5dd451a0",
-    input={
-        "prompt": "portrait, impressionist painting, loose brushwork, vibrant color, light and shadow play",
-        "cfg_scale": 1.2,
-        "num_steps": 4,
-        "image_width": 768,
-        "num_samples": 4,
-        "image_height": 1024,
-        "output_format": "webp",
-        "identity_scale": 0.8,
-        "mix_identities": False,
-        "output_quality": 80,
-        "generation_mode": "fidelity",
-        "main_face_image": "https://www.billboard.com/wp-content/uploads/2023/12/taylor-swift-eras-foxborough-2023-billboard-1548.jpg?w=942&h=623&crop=1",
-        "negative_prompt": "fire in the eyes, flaws in the face, flaws, lowres, non-HDRi, low quality, worst quality,artifacts noise, text, watermark, glitch, deformed, mutated, ugly, disfigured, hands, low resolution, partially rendered objects,  deformed or partially rendered eyes, deformed, deformed eyeballs, cross-eyed,blurry"
-    }
-    )
+    q = request.form.get("q")
+    r = replicate.run("stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
+      input = {"prompt":q}
     
     return render_template(
          "generate_image_result.html", r = output)
