@@ -7,11 +7,16 @@
 
 <div class="container">
 <img src="">
-<h2>The predicted price is {{r}}</h2>
+<h2>Click to generate image:</h2>
 
+
+<form action="generate_result_image" method="post">
+    <p><input type="text"  name="q"></p>
+    <input type="submit" value="Get image">
+</form>
 
 <form action="end" method="post">
-    <input type="submit" valoue="back to main">
+    <input type="submit" value="back to main">
 </form>
-</div>
 
+</div>
