@@ -9,7 +9,9 @@ app = Flask(__name__)
 
 flag = 1
 name = ""
-palm.configure(api_key="AIzaSyDV1E5CltzYfoXoUFMgh8ziYxnFypEO9yc")
+
+makersuite_api = os.getenv("MAKERSUITE_API_TOKEN")
+palm.configure(api_key=makersuite_api)
 
 @app.route("/main",  methods=["GET","POST"])
 def main():
