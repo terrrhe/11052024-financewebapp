@@ -71,7 +71,7 @@ def generate_result_image():
 def do_dbs_price():
     
     q = float(request.form.get("q"))
-    return render_template("dbs_price.html", r=(q*-50.6)+90.2
+    return render_template("dbs_price.html", r=(q*-50.6)+90.2)
 
 @app.route("/end",  methods=["GET","POST"])
 def end():
