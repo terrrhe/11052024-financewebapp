@@ -2,13 +2,18 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+flag = 1
+name = ""
+
 @app.route("/main",  methods=["GET","POST"])
 def main():
-    
-     r = request.form.get("q")
-     return render_template(
-         "main.html", r=r
-    )
+    global flag, name
+    if flag == 1:
+        name = request.form.get("q")
+        flag = 0
+        
+    return render_template(
+         "main.html", r= name )
 
 @app.route("/dbs_price",  methods=["GET","POST"])
 def do_dbs_price():
