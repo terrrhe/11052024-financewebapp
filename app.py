@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import google.generativeai as palm
 import replicate
-import osx
+import os
 import requests
 from PIL import Image
 
