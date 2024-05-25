@@ -4,6 +4,8 @@ import replicate
 import os
 import requests
 from PIL import Image
+import datetime
+import sqlite3
 
 app = Flask(__name__)
 
@@ -83,7 +85,54 @@ def prediction():
     
     
     return do_prediction()
+    
+@app.route("/user_logs",  methods=["GET","POST"])
+def user_logs():
+     return render_template(
+         "logs.html"
+    )
 
+@app.route("/log_create",  methods=["GET","POST"])
+def log_create():
+    
+    #q =  request.form.get("q")
+    conn = sqlite3.connect('log.db', timeout = 10)
+    c = conn.cursor()
+    c.execute('CREATE TABLE user (name text, timestamp timestamp)')
+    conn.commit()
+    c.close()
+    conn.close()
+    
+    return "log table is created successfully"
+
+@app.route("/log_insert",  methods=["GET","POST"])
+def log_insert():
+    
+    q =  request.form.get("q")
+    if len(q) > 0:
+        conn = sqlite3.connect('log.db', timeout = 10)
+        c = conn.cursor()
+        c.execute("insert into user(name, timestamp) values(?, ?)", (q, datetime.datetime.now()))
+        conn.commit()
+        c.close()
+        conn.close()
+    
+        return q + " is inserted successfully"
+    
+    return "input is empty"
+
+@app.route("/log_show",  methods=["GET","POST"])
+def log_show():
+    conn = sqlite3.connect('log.db', timeout = 10)
+    c = conn.cursor()
+    c = conn.execute("select * from user")
+
+    r= "logs are"
+    for row in c:
+      r += str(row) + ","
+        
+    return r
+    
 @app.route("/",  methods=["GET","POST"])
 def index():
      return render_template(
