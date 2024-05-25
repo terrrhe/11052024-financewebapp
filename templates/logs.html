@@ -1,0 +1,22 @@
+<style>
+    .container {width: 100%;margin: auto;}
+    @media (min-width: 600px) {.container {width: 80%;}}
+    @media (min-width: 768px) {.container {width: 60%;}}
+    @media (min-width: 1024px) {.container {width: 50%;}}
+</style>
+
+<div class="container">
+<img src="">
+<h2>To insert and see those logs</h2>
+
+<form action="log_create" method="post">
+    <input type="submit" value="create log table">
+</form>
+<form action="log_insert" method="post">
+    <p><input type="text" name="q"></p>
+    name <input type="submit" value="insert one log">
+</form>
+<form action="log_show" method="post">
+    <input type="submit" value="show logs">
+</form>
+</div>
