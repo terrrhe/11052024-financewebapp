@@ -3,3 +3,4 @@ gunicorn
 replicate
 google-generativeai
 pillow
+pysqlite3
